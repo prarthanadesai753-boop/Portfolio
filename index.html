@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Prarthana Desai</title>
+    <meta name="description" content="A modern dark portfolio template inspired by the Northern Lights with comprehensive sections and smooth animations">
+    <meta property="og:title" content="Aurora Portfolio Template">
+    <meta property="og:description" content="A Northern Lights inspired portfolio template with dark mode aesthetic">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Custom Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'aurora-green': '#00ffaa',
+                        'aurora-blue': '#00aaff',
+                        'aurora-purple': '#aa00ff',
+                        'aurora-pink': '#ff00aa',
+                        'dark-bg': '#0a0e1a',
+                        'dark-card': '#1a1f2e',
+                        'dark-border': '#2a2f3e'
+                    },
+                    animation: {
+                        'aurora': 'aurora 15s ease-in-out infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 4s ease-in-out infinite',
+                        'slide-up': 'slideUp 0.5s ease-out',
+                        'glow': 'glow 2s ease-in-out infinite'
+                    },
+                    keyframes: {
+                        aurora: {
+                            '0%, 100%': {
+                                backgroundPosition: '0% 50%',
+                                backgroundSize: '200% 200%'
+                            },
+                            '50%': {
+                                backgroundPosition: '100% 50%',
+                                backgroundSize: '200% 200%'
+                            }
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-20px)' }
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(20px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' }
+                        },
+                        glow: {
+                            '0%, 100%': {
+                                boxShadow: '0 0 5px rgba(0, 255, 170, 0.5), 0 0 20px rgba(0, 255, 170, 0.3)'
+                            },
+                            '50%': {
+                                boxShadow: '0 0 20px rgba(0, 170, 255, 0.8), 0 0 40px rgba(0, 170, 255, 0.4)'
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Aurora gradient background */
+        .aurora-bg {
+            background: linear-gradient(-45deg, #0a0e1a, #1a0033, #002244, #001a33);
+            background-size: 400% 400%;
+            animation: aurora 15s ease infinite;
+        }
+
+        /* Aurora light effect overlay */
+        .aurora-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100vh;
+            background:
+                radial-gradient(ellipse at top left, rgba(0, 255, 170, 0.15) 0%, transparent 40%),
+                radial-gradient(ellipse at top right, rgba(0, 170, 255, 0.15) 0%, transparent 40%),
+                radial-gradient(ellipse at bottom left, rgba(170, 0, 255, 0.1) 0%, transparent 40%),
+                radial-gradient(ellipse at bottom right, rgba(255, 0, 170, 0.1) 0%, transparent 40%);
+            pointer-events: none;
+            opacity: 0.7;
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0a0e1a;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(to bottom, #00ffaa, #00aaff);
+            border-radius: 5px;
+        }
+
+        /* Gradient text */
+        .gradient-text {
+            background: linear-gradient(135deg, #00ffaa 0%, #00aaff 50%, #aa00ff 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Card hover effect */
+        .card-hover {
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+
+        .card-hover:hover {
+            border-color: #00ffaa;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 255, 170, 0.2);
+        }
+
+        /* Progress bar animation */
+        @keyframes progressAnimation {
+            0% { width: 0%; }
+        }
+
+        .progress-bar {
+            animation: progressAnimation 2s ease-out forwards;
+        }
+        /* ================= TECH STACK ================= */
+
+.tech-card{
+
+    background:rgba(255,255,255,.05);
+
+    backdrop-filter:blur(18px);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    border-radius:22px;
+
+    padding:35px 25px;
+
+    text-align:center;
+
+    transition:.4s ease;
+
+    cursor:pointer;
+
+    overflow:hidden;
+
+    position:relative;
+
+}
+
+.tech-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:200px;
+
+    height:200px;
+
+    background:rgba(139,92,246,.15);
+
+    border-radius:50%;
+
+    top:-120px;
+
+    right:-120px;
+
+    transition:.5s;
+
+}
+
+.tech-card:hover::before{
+
+    transform:scale(1.5);
+
+}
+
+.tech-card:hover{
+
+    transform:translateY(-12px);
+
+    border-color:#8B5CF6;
+
+    box-shadow:
+    0 20px 40px rgba(139,92,246,.35),
+    0 0 40px rgba(34,211,238,.15);
+
+}
+
+.tech-card i{
+
+    font-size:72px;
+
+    margin-bottom:20px;
+
+    transition:.4s;
+
+}
+
+.tech-card:hover i{
+
+    transform:scale(1.15) rotate(8deg);
+
+}
+
+.tech-card h3{
+
+    font-size:20px;
+
+    font-weight:600;
+
+    color:white;
+
+}
+
+#skills{
+
+    position:relative;
+
+}
+
+    </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body class="bg-dark-bg text-gray-200 aurora-bg">
+    <!-- Aurora overlay effect -->
+    <div class="aurora-overlay"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-dark-bg/90 backdrop-blur-md border-b border-dark-border z-50">
+        <div class="container mx-auto px-6 py-3">
+            <div class="flex justify-between items-center">
+                <div class="text-2xl font-bold gradient-text">Prarthana Desai</div>
+                <ul class="hidden md:flex space-x-8">
+                    <li><a href="#home" class="hover:text-aurora-green transition">Home</a></li>
+                    <li><a href="#about" class="hover:text-aurora-green transition">About</a></li>
+                    <li><a href="#education" class="hover:text-aurora-green transition">Education</a></li>
+                    <li><a href="#skills" class="hover:text-aurora-green transition">Skills</a></li>
+                    <li><a href="#Projects" class="hover:text-aurora-green transition">Projects</a></li>
+                    <li><a href="#contact" class="hover:text-aurora-green transition">Contact</a></li>
+                </ul>
+                <!-- Mobile menu button -->
+                <button class="md:hidden" onclick="toggleMobileMenu()">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+            <!-- Mobile menu -->
+            <div id="mobileMenu" class="hidden md:hidden mt-4 space-y-2">
+                <a href="#home" class="block py-2 hover:text-aurora-green">Home</a>
+                <a href="#about" class="block py-2 hover:text-aurora-green">About</a>
+                <a href="#education" class="block py-2 hover:text-aurora-green">Education</a>
+                <a href="#skills" class="block py-2 hover:text-aurora-green">Skills</a>
+                <a href="#Projects" class="block py-2 hover:text-aurora-green">Projects</a>
+                <a href="#contact" class="block py-2 hover:text-aurora-green">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center justify-center pt-20 relative">
+        <div class="container mx-auto px-6 text-center z-10">
+            <div class="animate-slide-up">
+                <h1 class="text-5xl md:text-7xl font-bold mb-4">
+                    Hello, I'm <span class="gradient-text">Prarthana Desai</span>
+                </h1>
+                <p class="text-xl md:text-2xl text-gray-400 mb-8">Aspiring Full-Stack Developer | Computer Science Graduate|MCA Student</p>
+                <p class="text-lg text-gray-500 max-w-2xl mx-auto mb-12">
+                  I enjoy building modern, responsive, and user-friendly web applications. Currently pursuing opportunities to grow as a full-stack developer while continuously learning new technologies and creating impactful projects.
+</p>
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="#Projects" class="px-8 py-3 bg-gradient-to-r from-aurora-green to-aurora-blue rounded-full text-dark-bg font-semibold hover:shadow-lg hover:shadow-aurora-green/50 transition transform hover:scale-105">
+                        View My Work
+                    </a>
+                    <a href="resume.pdf" class="px-8 py-3 border-2 border-aurora-green rounded-full hover:bg-aurora-green hover:text-dark-bg transition transform hover:scale-105">
+                        Download CV
+                    </a>
+                </div>
+                <div class="mt-12 flex justify-center space-x-6">
+                    <a href="https://github.com/prarthanadesai753-boop" class="text-2xl hover:text-aurora-green transition"><i class="fab fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/prarthana-desai-02422b373?utm_source=share_via&utm_content=profile&utm_medium=member_android" class="text-2xl hover:text-aurora-blue transition"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" class="text-2xl hover:text-aurora-purple transition"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="text-2xl hover:text-aurora-pink transition"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <!-- Animated particles -->
+        <div class="absolute inset-0 overflow-hidden pointer-events-none">
+            <div class="absolute w-2 h-2 bg-aurora-green rounded-full animate-float" style="top: 20%; left: 10%;"></div>
+            <div class="absolute w-2 h-2 bg-aurora-blue rounded-full animate-float" style="top: 60%; left: 80%; animation-delay: 1s;"></div>
+            <div class="absolute w-2 h-2 bg-aurora-purple rounded-full animate-float" style="top: 40%; left: 60%; animation-delay: 2s;"></div>
+            <div class="absolute w-2 h-2 bg-aurora-pink rounded-full animate-float" style="top: 80%; left: 30%; animation-delay: 3s;"></div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 relative">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-12 gradient-text">About Me</h2>
+            <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6">
+                    <p class="text-gray-400 leading-relaxed">
+                       I'm currently pursuing a Master of Computer Applications (MCA) with a strong foundation in Computer Science. I enjoy building modern, responsive, 
+                       and user-friendly web applications while continuously learning new technologies and improving my development skills.
+                    </p>
+                    <p class="text-gray-400 leading-relaxed">
+                      My passion for web development began with a curiosity about how websites work. Since then, I've worked on projects using Python, Flask, JavaScript, HTML, CSS,
+                       PostgreSQL, and MySQL. I enjoy solving real-world problems through clean, efficient code and creating intuitive digital experiences.
+                    </p>
+                    <div class="grid grid-cols-2 gap-4 pt-4">
+                        <div class="bg-dark-card p-4 rounded-lg border border-dark-border">
+                            <div class="text-3xl font-bold text-aurora-green">4+</div>
+                            <div class="text-sm text-gray-400">Projects Completed</div>
+                        </div>
+                        <div class="bg-dark-card p-4 rounded-lg border border-dark-border">
+                            <div class="text-3xl font-bold text-aurora-blue">8+</div>
+                            <div class="text-sm text-gray-400">Certifications</div>
+                        </div>
+                        <div class="bg-dark-card p-4 rounded-lg border border-dark-border">
+                            <div class="text-3xl font-bold text-aurora-purple">83.20%</div>
+                            <div class="text-sm text-gray-400">BCS Score</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative">
+                    <div class="w-80 h-80 mx-auto rounded-full bg-gradient-to-br from-aurora-green via-aurora-blue to-aurora-purple p-1">
+                        <div class="w-full h-full rounded-full bg-dark-bg flex items-center justify-center">
+                            <span class="text-6xl">👩‍💻</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="education" class="py-20 bg-dark-card/30">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-12 gradient-text">Education</h2>
+            <div class="max-w-4xl mx-auto space-y-8">
+                <div class="relative pl-8 border-l-2 border-aurora-green">
+                    <div class="absolute -left-2 top-0 w-4 h-4 bg-aurora-green rounded-full"></div>
+                    <div class="bg-dark-card p-6 rounded-lg card-hover">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-semibold text-aurora-green">Master Of Computer Applications</h3>
+                            <span class="text-sm text-gray-400">Status -Pursuing</span>
+                        </div>
+                        <p class="text-gray-300 font-medium mb-2"></p>
+                        <p class="text-gray-400">
+            
+                        </p>
+                    </div>
+                </div>
+
+                <div class="relative pl-8 border-l-2 border-aurora-blue">
+                    <div class="absolute -left-2 top-0 w-4 h-4 bg-aurora-blue rounded-full"></div>
+                    <div class="bg-dark-card p-6 rounded-lg card-hover">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-semibold text-aurora-blue">B.S.C-Computer Science</h3>
+                            <span class="text-sm text-gray-400">Year-2025</span>
+                        </div>
+                        <p class="text-gray-300 font-medium mb-2">CGPA-9.16</p>
+                        <p class="text-gray-400">
+                            My journey in Computer Science has strengthened my problem-solving skills, 
+                            technical knowledge, and passion for creating modern, user-friendly web applications.
+
+                        </p>
+                    </div>
+                </div>
+
+                <div class="relative pl-8 border-l-2 border-aurora-purple">
+                    <div class="absolute -left-2 top-0 w-4 h-4 bg-aurora-purple rounded-full"></div>
+                    <div class="bg-dark-card p-6 rounded-lg card-hover">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-semibold text-aurora-purple">SSC</h3>
+                            <span class="text-sm text-gray-400">Year-2020</span>
+                        </div>
+                        <p class="text-gray-300 font-medium mb-2">82.40%</p>
+                        <p class="text-gray-400">
+                           
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+   
+      <!-- ================= TECH STACK ================= -->
+
+<section id="skills" class="py-24">
+
+    <div class="container mx-auto px-6">
+
+        <h2 class="text-5xl font-bold text-center gradient-text mb-4">
+            Technical Skills
+        </h2>
+
+        <p class="text-center text-gray-400 mb-16">
+            Technologies and tools I use to build web applications and solve real-world problems.
+        </p>
+
+        <!-- Languages -->
+        <div class="mb-16">
+            <h3 class="text-3xl font-semibold text-aurora-green mb-8">
+                 Languages
+            </h3>
+
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+
+                <div class="tech-card">
+                    <i class="devicon-python-plain colored"></i>
+                    <h3>Python</h3>
+                </div>
+
+                <div class="tech-card">
+                    <i class="devicon-java-plain colored"></i>
+                    <h3>Java</h3>
+                </div>
+
+                <div class="tech-card">
+                    <i class="devicon-html5-plain colored"></i>
+                    <h3>HTML5</h3>
+                </div>
+
+                <div class="tech-card">
+                    <i class="devicon-css3-plain colored"></i>
+                    <h3>CSS3</h3>
+                </div>
+
+                <div class="tech-card">
+                    <i class="devicon-javascript-plain colored"></i>
+                    <h3>JavaScript</h3>
+                </div>
+
+                <div class="tech-card">
+                    <i class="devicon-azuresqldatabase-plain colored"></i>
+                    <h3>SQL</h3>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Frameworks -->
+        <div class="mb-16">
+
+            <h3 class="text-3xl font-semibold text-aurora-blue mb-8">
+                Frameworks
+            </h3>
+
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+
+                <div class="tech-card">
+                    <i class="devicon-flask-original"></i>
+                    <h3>Flask</h3>
+                </div>
+
+                <div class="tech-card">
+                    <i class="devicon-django-plain"></i>
+                    <h3>Django</h3>
+                </div>
+
+                <div class="tech-card">
+                    <i class="devicon-bootstrap-plain colored"></i>
+                    <h3>Bootstrap</h3>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Databases -->
+
+        <div class="mb-16">
+
+            <h3 class="text-3xl font-semibold text-aurora-purple mb-8">
+                Databases
+            </h3>
+
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+
+                <div class="tech-card">
+                    <i class="devicon-postgresql-plain colored"></i>
+                    <h3>PostgreSQL</h3>
+                </div>
+
+                <div class="tech-card">
+                    <i class="devicon-mysql-original colored"></i>
+                    <h3>MySQL</h3>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Developer Tools -->
+
+        <div class="mb-16">
+
+            <h3 class="text-3xl font-semibold text-aurora-pink mb-8">
+                 Developer Tools
+            </h3>
+
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+
+                <div class="tech-card">
+                    <i class="devicon-github-original"></i>
+                    <h3>GitHub</h3>
+                </div>
+
+                <div class="tech-card">
+                    <i class="devicon-vscode-plain colored"></i>
+                    <h3>VS Code</h3>
+                </div>
+
+                <div class="tech-card">
+                    <i class="devicon-pycharm-plain colored"></i>
+                    <h3>PyCharm</h3>
+                </div>
+
+                <div class="tech-card">
+                    <i class="devicon-jupyter-plain colored"></i>
+                    <h3>Jupyter Notebook</h3>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Data Analytics -->
+
+        <div>
+
+            <h3 class="text-3xl font-semibold text-yellow-400 mb-8">
+                 Data Analytics
+            </h3>
+
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+
+                <div class="tech-card">
+                    <i class="fas fa-file-excel text-6xl text-green-500"></i>
+                    <h3>Microsoft Excel</h3>
+                </div>
+               <!-- Tableau -->
+            <div class="tech-card">
+                   <div class="text-6xl mb-4">📈</div>
+                 <h3>Tableau</h3>
+            </div>
+
+               <!-- Power BI -->
+                   
+            <div class="tech-card">
+                <div class="text-6xl mb-4">📉</div>
+              <h3>Power BI</h3>
+             </div>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+    <!-- Projects Section -->
+     
+  <section id="Projects" class="py-20">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-12 gradient-text">Projects</h2>
+            <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-8">
+                <div class="bg-dark-card rounded-lg overflow-hidden card-hover group">
+                    <div class="h-48 bg-gradient-to-br from-aurora-green to-aurora-blue flex items-center justify-center">
+                        <i class="fas fa-newspaper text-7xl text-white"></i>
+                       
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">News Aggregator</h3>
+                        <p class="text-gray-400 mb-4">Developed a full-stack news aggregation platform that fetches real-time news using APIs, allowing users to customize their news sources and categories. 
+                            Includes user authentication, and database management.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-2 py-1 bg-aurora-green/20 text-aurora-green rounded text-xs">Python</span>
+                            <span class="px-2 py-1 bg-aurora-blue/20 text-aurora-blue rounded text-xs">Flask</span>
+                            <span class="px-2 py-1 bg-aurora-purple/20 text-aurora-purple rounded text-xs">PostgreSQL</span>
+                        </div>
+                        <!--<div class="flex space-x-4">
+                            <a href="#" class="text-aurora-green hover:text-aurora-blue transition">
+                                <i class="fas fa-external-link-alt"></i> Live
+                            </a>
+                            <a href="#" class="text-aurora-green hover:text-aurora-blue transition">
+                                <i class="fab fa-github"></i> Code
+                            </a>
+                        </div>-->
+                    </div>
+                </div>
+
+                <div class="bg-dark-card rounded-lg overflow-hidden card-hover group">
+                    <div class="h-48 bg-gradient-to-br from-aurora-blue to-aurora-purple flex items-center justify-center">
+                        <i class="fas fa-hourglass-half text-7xl text-white"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Study Tracker</h3>
+                        <p class="text-gray-400 mb-4">A productivity application that helps students manage study sessions using timers,
+                             track completed sessions, and maintain study records to improve focus and consistency.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-2 py-1 bg-aurora-green/20 text-aurora-green rounded text-xs">Python</span>
+                            <span class="px-2 py-1 bg-aurora-blue/20 text-aurora-blue rounded text-xs">HTML/CSS/Javascript</span>
+                            <span class="px-2 py-1 bg-aurora-purple/20 text-aurora-purple rounded text-xs">PostgreSQL</span>
+                        </div>
+                         <!--<div class="flex space-x-4">
+                            <a href="#" class="text-aurora-green hover:text-aurora-blue transition">
+                                <i class="fas fa-external-link-alt"></i> Live
+                            </a>
+                            <a href="#" class="text-aurora-green hover:text-aurora-blue transition">
+                                <i class="fab fa-github"></i> Code
+                            </a>
+                        </div>-->
+                    </div>
+                </div>
+
+                <div class="bg-dark-card rounded-lg overflow-hidden card-hover group">
+                    <div class="h-48 bg-gradient-to-br from-aurora-purple to-aurora-pink flex items-center justify-center">
+                        <i class="fas fa-chart-line text-7xl text-white"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Power BI Dashboard</h3>
+                        <p class="text-gray-400 mb-4">    An interactive data visualization dashboard that analyzes datasets, generates meaningful insights, 
+                            and presents reports using charts, graphs, and business intelligence tools.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-2 py-1 bg-aurora-green/20 text-aurora-green rounded text-xs">Power BI</span>
+                            <!--  <span class="px-2 py-1 bg-aurora-blue/20 text-aurora-blue rounded text-xs">Socket.io</span>
+                            <span class="px-2 py-1 bg-aurora-purple/20 text-aurora-purple rounded text-xs">Redis</span>-->
+                        </div>
+                        <!--<div class="flex space-x-4">
+                            <a href="#" class="text-aurora-green hover:text-aurora-blue transition">
+                                <i class="fas fa-external-link-alt"></i> Live
+                            </a>
+                            <a href="#" class="text-aurora-green hover:text-aurora-blue transition">
+                                <i class="fab fa-github"></i> Code
+                            </a>
+                        </div>-->
+                        </div>
+                        </div>
+
+                        <!-- Grocery & Kitchen Management Project -->
+<div class="bg-dark-card rounded-lg overflow-hidden card-hover group">
+    <div class="h-48 bg-gradient-to-br from-aurora-green to-aurora-blue flex items-center justify-center">
+        <i class="fas fa-shopping-basket text-7xl text-white"></i>
+    </div>
+
+    <div class="p-6">
+        <h3 class="text-xl font-semibold mb-2">Grocery & Kitchen Management</h3>
+
+        <p class="text-gray-400 mb-4">
+            A smart kitchen management application that helps users track grocery items, manage inventory, monitor expiry dates, and organize daily kitchen requirements efficiently.
+        </p>
+
+        <div class="flex flex-wrap gap-2 mb-4">
+            <span class="px-2 py-1 bg-aurora-green/20 text-aurora-green rounded text-xs">Python</span>
+            <span class="px-2 py-1 bg-aurora-blue/20 text-aurora-blue rounded text-xs">Flask</span>
+            <span class="px-2 py-1 bg-aurora-purple/20 text-aurora-purple rounded text-xs">Database</span>
+            <span class="px-2 py-1 bg-aurora-blue/20 text-aurora-blue rounded text-xs">HTML/CSS</span>
+            
+
+            
+
+         
+        </div>
+    </div>
+</div>
+
+<!-- Movie Tracker Project -->
+<div class="bg-dark-card rounded-lg overflow-hidden card-hover group">
+    <div class="h-48 bg-gradient-to-br from-aurora-purple to-aurora-blue flex items-center justify-center">
+        <i class="fas fa-film text-7xl text-white"></i>
+    </div>
+
+    <div class="p-6">
+        <h3 class="text-xl font-semibold mb-2">Movie Tracker</h3>
+
+        <p class="text-gray-400 mb-4">
+            A movie tracking application that allows users to explore movies, maintain watchlists, track watched films, and organize their favorite movies with an easy-to-use interface.
+        </p>
+
+        <div class="flex flex-wrap gap-2 mb-4">
+            <span class="px-2 py-1 bg-aurora-green/20 text-aurora-green rounded text-xs">Python</span>
+            <span class="px-2 py-1 bg-aurora-blue/20 text-aurora-blue rounded text-xs">Database</span>
+            <span class="px-2 py-1 bg-aurora-purple/20 text-aurora-purple rounded text-xs">Flask</span>
+         
+        </div>
+    </div>
+</div>
+              
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-dark-card/30">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-12 gradient-text">Get In Touch</h2>
+            <div class="max-w-4xl mx-auto">
+                <div class="grid md:grid-cols-2 gap-8 mb-8">
+                    <div class="space-y-6">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 rounded-full bg-gradient-to-br from-aurora-green to-aurora-blue flex items-center justify-center">
+                                <i class="fas fa-envelope text-dark-bg"></i>
+                            </div>
+                            <div>
+                                <p class="text-gray-400">Email</p>
+                                <p>prathudesai77@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 rounded-full bg-gradient-to-br from-aurora-blue to-aurora-purple flex items-center justify-center">
+                                <i class="fas fa-phone text-dark-bg"></i>
+                            </div>
+                            <div>
+                                <p class="text-gray-400">Phone</p>
+                                <p></p>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 rounded-full bg-gradient-to-br from-aurora-purple to-aurora-pink flex items-center justify-center">
+                                <i class="fas fa-map-marker-alt text-dark-bg"></i>
+                            </div>
+                            <div>
+                                <p class="text-gray-400">Location</p>
+                                <p>Pune,Maharashtra</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <form class="space-y-4">
+                        <input type="text" placeholder="Your Name" class="w-full px-4 py-3 bg-dark-card border border-dark-border rounded-lg focus:outline-none focus:border-aurora-green">
+                        <input type="email" placeholder="Your Email" class="w-full px-4 py-3 bg-dark-card border border-dark-border rounded-lg focus:outline-none focus:border-aurora-green">
+                        <textarea placeholder="Your Message" rows="4" class="w-full px-4 py-3 bg-dark-card border border-dark-border rounded-lg focus:outline-none focus:border-aurora-green"></textarea>
+                        <button type="submit" class="w-full px-8 py-3 bg-gradient-to-r from-aurora-green to-aurora-blue rounded-lg text-dark-bg font-semibold hover:shadow-lg hover:shadow-aurora-green/50 transition transform hover:scale-105">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 border-t border-dark-border">
+        <div class="container mx-auto px-6 text-center">
+            <div class="mb-4">
+                <a href="#" class="text-2xl mx-2 hover:text-aurora-green transition"><i class="fab fa-github"></i></a>
+                <a href="#" class="text-2xl mx-2 hover:text-aurora-blue transition"><i class="fab fa-linkedin"></i></a>
+                <a href="#" class="text-2xl mx-2 hover:text-aurora-purple transition"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="text-2xl mx-2 hover:text-aurora-pink transition"><i class="fab fa-instagram"></i></a>
+            </div>
+            <p class="text-gray-400">
+          
+                <a href="https://github.com/OSSPhilippines/freefolio" class="text-aurora-green hover:text-aurora-blue transition">
+                  
+                </a>
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('#mobileMenu a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('mobileMenu').classList.add('hidden');
+            });
+        });
+
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-slide-up');
+                }
+            });
+        }, observerOptions);
+
+        // Observe sections for animation
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
